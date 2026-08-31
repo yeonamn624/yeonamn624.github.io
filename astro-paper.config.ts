@@ -9,7 +9,6 @@ export default defineAstroPaperConfig({
     profile: "https://github.com/yeonamn624",
     ogImage: "default-og.jpg",
     lang: "en",
-    langTag: ["ko-KR"],
     timezone: "Asia/Seoul",
     dir: "ltr",
   },
