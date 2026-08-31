@@ -34,7 +34,128 @@ const homePath = getRelativeLocaleUrl(locale, "");
   >
     <section id="hero" class="border-border border-b pt-8 pb-6">
       <h1 class="my-4 inline-block text-2xl font-bold sm:my-6 sm:text-3xl tracking-tight">
-        RF & Microwave Engineering | <span class="text-sky-600">Jiwon Park</span>
+        RF & Microwave Engineering | <span class="text-orange-500 dark:text-orange-400">Jiwon Park</span>
+      </h1>
+
+      <p class="mb-4 text-base leading-relaxed">
+        Welcome! I am an undergraduate student in the School of Electrical and Electronic Engineering at Yonsei University. This blog serves as my personal research notebook, centered on my academic interests in RF and microwave engineering, documenting coursework, projects, and other academic activities.
+      </p>
+
+      <p class="font-semibold mt-6 mb-2 text-xs uppercase tracking-wider text-sky-600 dark:text-sky-400">CORE FOCUS AREAS</p>
+      
+      <!-- 파란색 스타일로 변경된 배지 영역 -->
+      <div class="flex flex-wrap gap-2 my-3">
+        <a
+          href={getRelativeLocaleUrl(locale, "tags/rf-and-microwave")}
+          class="rounded-md border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-600 hover:bg-sky-500 hover:text-white transition-colors dark:bg-sky-950/40 dark:border-sky-800 dark:text-sky-400"
+        >
+          RF & Microwave Engineering
+        </a>
+        <a
+          href={getRelativeLocaleUrl(locale, "tags/coursework-and-projects")}
+          class="rounded-md border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-600 hover:bg-sky-500 hover:text-white transition-colors dark:bg-sky-950/40 dark:border-sky-800 dark:text-sky-400"
+        >
+          Coursework & Projects
+        </a>
+        <a
+          href={getRelativeLocaleUrl(locale, "tags/engineering-life")}
+          class="rounded-md border border-sky-300 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-600 hover:bg-sky-500 hover:text-white transition-colors dark:bg-sky-950/40 dark:border-sky-800 dark:text-sky-400"
+        >
+          Engineering Life
+        </a>
+      </div>
+
+      <!-- 파란색 스타일로 변경된 리스트 영역 -->
+      <ul class="list-disc list-inside my-4 space-y-2 text-sm opacity-90 leading-relaxed">
+        <li>
+          <a href={getRelativeLocaleUrl(locale, "tags/rf-and-microwave")} class="hover:underline">
+            <strong class="text-sky-600 dark:text-sky-400">RF & Microwave Engineering:</strong> High-frequency circuit analysis, microwave component design, impedance matching, and wave propagation.
+          </a>
+        </li>
+        <li>
+          <a href={getRelativeLocaleUrl(locale, "tags/coursework-and-projects")} class="hover:underline">
+            <strong class="text-sky-600 dark:text-sky-400">Coursework & Projects:</strong> Notes, reflections, and outcomes from classes and hands-on projects across my EE studies.
+          </a>
+        </li>
+        <li>
+          <a href={getRelativeLocaleUrl(locale, "tags/engineering-life")} class="hover:underline">
+            <strong class="text-sky-600 dark:text-sky-400">Engineering Life:</strong> Everyday logs, activities, and experiences from student life along the way.
+          </a>
+        </li>
+      </ul>
+
+      <p class="mt-5 text-sm opacity-80 italic">
+        This space serves as my digital research log—documenting coursework reflections, project updates, and academic explorations along my path as an engineering student.
+      </p>
+
+      {
+        socials.length > 0 && (
+          <div class="mt-6 flex max-sm:flex-col sm:items-center">
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0 text-sm">
+              {t.home.socialLinks}:
+            </div>
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
+    {
+      featuredPosts.length > 0 && (
+        <section
+          id="featured"
+          class:list={[
+            "pt-10 pb-6",
+            { "border-border border-b": recentPosts.length > 0 },
+          ]}
+        >
+          <h2 class="text-xl font-semibold tracking-wide text-sky-600 dark:text-sky-400">
+            {t.home.featured}
+          </h2>
+          <ul>
+            {featuredPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts" class="pt-10 pb-6">
+          <h2 class="text-xl font-semibold tracking-wide text-sky-600 dark:text-sky-400">
+            {t.home.recentPosts}
+          </h2>
+          <ul>
+            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="my-8 text-center">
+      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
+        {t.home.allPosts}
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset;
+    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+    if (indexLayout?.layout) {
+      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+    }
+  });
+</script>        RF & Microwave Engineering | <span class="text-sky-600">Jiwon Park</span>
       </h1>
 
       <p class="mb-4 text-base leading-relaxed">
