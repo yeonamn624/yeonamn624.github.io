@@ -1,36 +1,29 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import Hr from "@/components/Hr.astro";
+import Hr from "./Hr.astro";
 import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconArchives from "@/assets/icons/IconArchives.svg";
-import LinkButton from "@/components/LinkButton.astro";
-import ThemeToggle from "@/components/ThemeToggle.astro";
-import config from "@/config";
-import { useTranslations } from "@/i18n";
+import LinkButton from "./LinkButton.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { SITE, LOCALE } from "@config";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "archives" | "about" | "search";
+  activeNav?: "posts" | "archives" | "about" | "search";
 }
 
 const { activeNav } = Astro.props;
-
-const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
-
-const { site, features } = config;
 ---
 
 <header>
-  <a id="skip-to-content" href="#main-content">{t.header.skipToContent}</a>
+  <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      <a href={getRelativeLocaleUrl(locale, "")} class="logo whitespace-nowrap">
-        {site.title}
+      <a href="/" class="logo whitespace-nowrap">
+        {SITE.title}
       </a>
       <nav id="nav-menu">
         <button
           class="hamburger-menu focus-outline"
-          aria-label={t.header.openMenu}
+          aria-label="Open Menu"
           aria-expanded="false"
           aria-controls="menu-items"
         >
@@ -53,60 +46,29 @@ const { site, features } = config;
         </button>
         <ul id="menu-items" class="display-none sm:flex">
           <li>
-            <a
-              href={getRelativeLocaleUrl(locale, "posts")}
-              class:list={[{ "active-nav": activeNav === "posts" }]}
-            >
-              {t.header.posts}
+            <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
+              Posts
             </a>
           </li>
           <li>
-            <a
-              href={getRelativeLocaleUrl(locale, "about")}
-              class:list={[{ "active-nav": activeNav === "about" }]}
-            >
-              {t.header.about}
+            <a href="/about/" class={activeNav === "about" ? "active" : ""}>
+              About
             </a>
           </li>
-
+          <li>
+            <LinkButton
+              href="/search/"
+              className={`focus-outline p-3 sm:p-1 ${
+                activeNav === "search" ? "active" : ""
+              }`}
+              ariaLabel="search"
+              title="Search"
+            >
+              <IconSearch class="hover:text-accent" />
+            </LinkButton>
+          </li>
           {
-            features.showArchives && (
-              <li>
-                <LinkButton
-                  href={getRelativeLocaleUrl(locale, "archives")}
-                  className:list={[
-                    "focus-outline p-3 sm:p-1",
-                    { "active-nav": activeNav === "archives" },
-                  ]}
-                  ariaLabel={t.header.archives}
-                  title={t.header.archives}
-                >
-                  <IconArchives class="hover:text-accent" />
-                </LinkButton>
-              </li>
-            )
-          }
-
-          {
-            features.search && (
-              <li>
-                <LinkButton
-                  href={getRelativeLocaleUrl(locale, "search")}
-                  className:list={[
-                    "focus-outline p-3 sm:p-1",
-                    { "active-nav": activeNav === "search" },
-                  ]}
-                  ariaLabel={t.header.search}
-                  title={t.header.search}
-                >
-                  <IconSearch class="hover:text-accent" />
-                </LinkButton>
-              </li>
-            )
-          }
-
-          {
-            features.lightAndDarkMode && (
+            SITE.lightAndDarkMode && (
               <li class="col-span-2 flex items-center justify-center sm:col-span-1">
                 <ThemeToggle />
               </li>
@@ -121,7 +83,7 @@ const { site, features } = config;
 
 <style>
   #skip-to-content {
-    @apply absolute -top-full z-50 bg-background px-3 py-2 text-accent transition-all focus:top-0;
+    @apply absolute -top-full z-50 bg-skin-fill px-3 py-2 text-skin-accent transition-all focus:top-0;
   }
   .nav-container {
     @apply mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row;
@@ -136,7 +98,7 @@ const { site, features } = config;
     @apply self-end p-2 sm:hidden;
   }
   .menu-icon {
-    @apply h-6 w-6 fill-foreground;
+    @apply h-6 w-6 fill-skin-base;
   }
   .menu-icon .line {
     @apply transition-opacity;
@@ -148,151 +110,10 @@ const { site, features } = config;
     @apply flex items-center justify-center;
   }
   #menu-items li a {
-    @apply w-full text-center font-medium hover:text-accent sm:my-0 sm:px-2 sm:py-1;
+    @apply w-full text-center font-medium hover:text-skin-accent sm:my-0 sm:px-2 sm:py-1;
   }
-  #menu-items li a.active-nav {
-    @apply text-accent underline underline-offset-8 decoration-accent decoration-2;
-  }
-</style>
-
-<script>
-  function toggleNav() {
-    const menuBtn = document.querySelector(".hamburger-menu");
-    const menuItems = document.querySelector("#menu-items");
-
-    menuBtn?.addEventListener("click", () => {
-      const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
-      menuItems?.classList.toggle("display-none");
-    });
-  }
-
-  toggleNav();
-  document.addEventListener("astro:after-swap", toggleNav);
-</script>          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="menu-icon"
-          >
-            <line x1="7" y1="12" x2="21" y2="12" class="line"></line>
-            <line x1="3" y1="6" x2="21" y2="6" class="line"></line>
-            <line x1="12" y1="18" x2="21" y2="18" class="line"></line>
-          </svg>
-        </button>
-        <ul id="menu-items" class="display-none sm:flex">
-          <!-- Posts 대주제 -->
-          <li>
-            <a
-              href={getRelativeLocaleUrl(locale, "posts")}
-              class:list={[{ "active-nav": activeNav === "posts" }]}
-            >
-              {t.header.posts}
-            </a>
-          </li>
-          
-          <!-- About 대주제 -->
-          <li>
-            <a
-              href={getRelativeLocaleUrl(locale, "about")}
-              class:list={[{ "active-nav": activeNav === "about" }]}
-            >
-              {t.header.about}
-            </a>
-          </li>
-
-          <!-- 아카이브 아이콘 (기능 설정 시 노출) -->
-          {
-            features.showArchives && (
-              <li>
-                <LinkButton
-                  href={getRelativeLocaleUrl(locale, "archives")}
-                  className:list={[
-                    "focus-outline p-3 sm:p-1",
-                    { "active-nav": activeNav === "archives" },
-                  ]}
-                  ariaLabel={t.header.archives}
-                  title={t.header.archives}
-                >
-                  <IconArchives class="hover:text-accent" />
-                </LinkButton>
-              </li>
-            )
-          }
-
-          <!-- 검색 아이콘 -->
-          {
-            features.search && (
-              <li>
-                <LinkButton
-                  href={getRelativeLocaleUrl(locale, "search")}
-                  className:list={[
-                    "focus-outline p-3 sm:p-1",
-                    { "active-nav": activeNav === "search" },
-                  ]}
-                  ariaLabel={t.header.search}
-                  title={t.header.search}
-                >
-                  <IconSearch class="hover:text-accent" />
-                </LinkButton>
-              </li>
-            )
-          }
-
-          <!-- 다크/라이트 모드 토글 -->
-          {
-            features.lightAndDarkMode && (
-              <li class="col-span-2 flex items-center justify-center sm:col-span-1">
-                <ThemeToggle />
-              </li>
-            )
-          }
-        </ul>
-      </nav>
-    </div>
-  </div>
-  <Hr />
-</header>
-
-<style>
-  #skip-to-content {
-    @apply absolute -top-full z-50 bg-background px-3 py-2 text-accent transition-all focus:top-0;
-  }
-  .nav-container {
-    @apply mx-auto flex max-w-app flex-col items-center justify-between sm:flex-row;
-  }
-  .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:py-6 sm:px-0;
-  }
-  .logo {
-    @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
-  }
-  .hamburger-menu {
-    @apply self-end p-2 sm:hidden;
-  }
-  .menu-icon {
-    @apply h-6 w-6 fill-foreground;
-  }
-  .menu-icon .line {
-    @apply transition-opacity;
-  }
-  #menu-items {
-    @apply mt-4 grid grid-cols-2 grid-rows-2 gap-x-2 gap-y-3 sm:mt-0 sm:flex sm:items-center sm:gap-x-5 sm:gap-y-0;
-  }
-  #menu-items li {
-    @apply flex items-center justify-center;
-  }
-  #menu-items li a {
-    @apply w-full text-center font-medium hover:text-accent sm:my-0 sm:px-2 sm:py-1;
-  }
-  #menu-items li a.active-nav {
-    @apply text-accent underline underline-offset-8 decoration-accent decoration-2;
+  #menu-items li a.active {
+    @apply text-skin-accent underline underline-offset-8 decoration-skin-accent decoration-2;
   }
 </style>
 
