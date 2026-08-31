@@ -35,7 +35,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
   >
     <section id="hero" class="border-border border-b pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Welcome to My Research Space
+        Jiwon | RF & Electromagnetics Log
       </h1>
       <a
         target="_blank"
@@ -52,38 +52,24 @@ const homePath = getRelativeLocaleUrl(locale, "");
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p>
-  <section id="hero"> 
-  <p>
-    Welcome! I am an Electrical and Electronic Engineering undergraduate student deeply passionate about high-frequency communications and RF systems.
-  </p>
-
-  <p><strong>Core Focus Areas:</strong></p>
-  <ul>
-    <li><strong>RF & Microwave Engineering:</strong> High-frequency circuit analysis, impedance matching, and passive/active components.</li>
-    <li><strong>Antenna Theory & Design:</strong> Radiating systems, wave propagation, and electromagnetic field theory.</li>
-    <li><strong>Simulation & Measurement:</strong> Modeling high-frequency structures and analyzing signal characteristics.</li>
-  </ul>
-  </p>
-
-  <p>
-    This digital notebook documents my academic journey, project logs, and theoretical reflections as I build expertise toward becoming an RF engineer.
-  </p>
-</section>
+      <p class="mb-4">
+        Welcome! I am an Electrical and Electronic Engineering undergraduate student deeply passionate about high-frequency communications and RF systems.
       </p>
-      <p class="mt-2">
-        Read the blog posts or check{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton>{" "}
-        for more info.
+
+      <p class="font-semibold mt-4">Core Focus Areas:</p>
+      <ul class="list-disc list-inside my-2 space-y-1">
+        <li><strong>RF & Microwave Engineering:</strong> High-frequency circuit analysis, impedance matching, and passive/active components.</li>
+        <li><strong>Antenna Theory & Design:</strong> Radiating systems, wave propagation, and electromagnetic field theory.</li>
+        <li><strong>Simulation & Measurement:</strong> Modeling high-frequency structures and analyzing signal characteristics.</li>
+      </ul>
+
+      <p class="mt-4">
+        This digital notebook documents my academic journey, project logs, and theoretical reflections as I build expertise toward becoming an RF engineer.
       </p>
+
       {
         socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
+          <div class="mt-6 flex max-sm:flex-col sm:items-center">
             <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
               {t.home.socialLinks}:
             </div>
