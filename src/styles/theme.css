@@ -13,20 +13,20 @@
 /* Light theme values */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --background: #ffffff;           /* 순백색 배경 */
+  --foreground: #1a1618;           /* 딥 차콜 글자색 */
+  --accent: #a31769;               /* 요청하신 자주색 포인트 */
+  --accent-foreground: #ffffff;    /* 포인트 위 글자색 (흰색) */
+  --muted: #fdf2f8;                /* 연한 핑크빛 배지/배경색 */
+  --muted-foreground: #a31769;     /* 배지 내부 자주색 글자 */
+  --border: #f472b6;               /* 은은한 로즈/자주빛 테두리 선 */
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
   --background: #212737;
   --foreground: #eaedf3;
-  --accent: #ff6b01;
+  --accent: #f472b6;               /* 다크모드용 연한 자주색 포인트 */
   --accent-foreground: #ffffff;
   --muted: #343f60;
   --muted-foreground: #afb9ca;
