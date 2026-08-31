@@ -14,21 +14,21 @@
 :root,
 [data-theme="light"] {
   --background: #ffffff;           /* 순백색 배경 */
-  --foreground: #1a1618;           /* 딥 차콜 글자색 */
-  --accent: #a31769;               /* 요청하신 자주색 포인트 */
-  --accent-foreground: #ffffff;    /* 포인트 위 글자색 (흰색) */
-  --muted: #fdf2f8;                /* 연한 핑크빛 배지/배경색 */
-  --muted-foreground: #a31769;     /* 배지 내부 자주색 글자 */
-  --border: #f472b6;               /* 은은한 로즈/자주빛 테두리 선 */
+  --foreground: #1e293b;           /* 깊이감 있는 딥 네이비 차콜 글자 */
+  --accent: #881337;               /* 묵직하고 세련된 딥 버건디 자주 */
+  --accent-foreground: #ffffff;    /* 포인트 요소 내부 글자색 */
+  --muted: #f1f5f9;                /* 깔끔한 소프트 회색 배지/카드 배경 */
+  --muted-foreground: #334155;     /* 배지 내부 차분한 텍스트 */
+  --border: #e2e8f0;               /* 정갈한 연회색 테두리 선 */
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #f472b6;               /* 다크모드용 연한 자주색 포인트 */
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --accent: #fb7185;               /* 다크모드용 소프트 로즈 버건디 */
+  --accent-foreground: #0f172a;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
 }
