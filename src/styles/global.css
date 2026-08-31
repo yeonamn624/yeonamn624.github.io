@@ -1,6 +1,26 @@
 * {
   font-family: Arial, Helvetica, sans-serif !important;
 }
+
+:root {
+  /* 배경색: 약간의 온기가 있는 부드러운 크림/아이보리 */
+  --color-fill: 35 25% 96%;
+  
+  /* 카드/박스 배경: 정갈한 연한 베이지 화이트 */
+  --color-card: 35 30% 98%;
+  
+  /* 박스 그림자 및 테두리 */
+  --color-card-muted: 340 15% 90%;
+  
+  /* 포인트 컬러: 딥 버건디 자주색 */
+  --color-accent: 345 65% 42%;
+  
+  /* 기본 글자색: 너무 차갑지 않은 차분한 다크 차콜 */
+  --color-text-base: 340 20% 18%;
+  
+  /* 테두리/선 색상: 은은한 자주빛 회색 선 */
+  --color-border: 340 15% 85%;
+}
 @import "tailwindcss";
 @import "./theme.css";
 @import "./typography.css";
