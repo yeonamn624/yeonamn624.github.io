@@ -1,36 +1,74 @@
 ---
-import { getEntry, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import config from "@/config";
 
-const about = await getEntry("pages", "about");
-
-if (!about) {
-  throw new Error(
-    "Missing content entry: `about.md` or `about.mdx` in `src/content/pages/`"
-  );
-}
-
-const { Content } = await render(about);
+const { site } = config;
 ---
 
-<Layout
-  title={`${about.data.title} | ${config.site.title}`}
-  description={about.data.description}
-  ogImage={about.data.ogImage}
-  canonicalURL={about.data.canonicalURL}
->
-  <Header />
+<Layout title={`About | ${site.title}`}>
+  <Header activeNav="about" />
+  <main id="main-content" class="app-layout my-1">
+    <section class="pt-8 pb-10 border-b border-border">
+      <!-- 메인 타이틀 영역 -->
+      <h1 class="text-2xl font-bold sm:text-3xl tracking-tight mb-2">
+        About <span class="text-orange-500 dark:text-orange-400">Jiwon Park</span>
+      </h1>
+      <p class="text-sm opacity-80 mb-6">
+        Undergraduate Research & Personal Engineering Log
+      </p>
 
-  <Breadcrumb />
+      <!-- 자기소개 카드로 감싸기 -->
+      <div class="rounded-lg border border-border bg-accent/5 p-6 space-y-4 mb-8">
+        <h2 class="text-lg font-semibold text-sky-600 dark:text-sky-400">
+          👋 Hello, I'm Jiwon Park
+        </h2>
+        <p class="text-sm leading-relaxed opacity-90">
+          I am an undergraduate student in the <strong>School of Electrical and Electronic Engineering at Yonsei University</strong>. 
+          My primary academic focus centers on <strong>RF & Microwave Engineering</strong>, electromagnetics, and high-frequency circuit design.
+        </p>
+        <p class="text-sm leading-relaxed opacity-90">
+          This blog functions as a public research notebook where I document coursework insights, laboratory project reflections, and my journey in electrical engineering.
+        </p>
+      </div>
 
-  <Main pageTitle={about.data.title} class="app-prose">
-    <Content />
-  </Main>
+      <!-- 정보 섹션 2열 배치 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- 학술 관심사 -->
+        <div class="rounded-lg border border-border p-5">
+          <h3 class="text-base font-semibold text-orange-500 dark:text-orange-400 mb-3 flex items-center gap-2">
+            📡 Academic Interests
+          </h3>
+          <ul class="list-disc list-inside text-xs space-y-2 opacity-85 leading-relaxed">
+            <li>RF & Microwave Circuit Analysis</li>
+            <li>Antenna & Wave Propagation</li>
+            <li>Impedance Matching & Smith Chart Analysis</li>
+            <li>High-Frequency Component Design</li>
+          </ul>
+        </div>
 
+        <!-- 사용 도구 및 기술 -->
+        <div class="rounded-lg border border-border p-5">
+          <h3 class="text-base font-semibold text-sky-600 dark:text-sky-400 mb-3 flex items-center gap-2">
+            🛠️ Tools & Environments
+          </h3>
+          <ul class="list-disc list-inside text-xs space-y-2 opacity-85 leading-relaxed">
+            <li><strong>EDA & Simulation:</strong> Keysight ADS, Ansys HFSS, PSpice</li>
+            <li><strong>Digital/Hardware:</strong> Verilog HDL, Vivado, FPGA (PYNQ-Z2)</li>
+            <li><strong>Computing & Math:</strong> MATLAB, Python, C/C++</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 연락처 & 소셜 -->
+      <div class="pt-4 border-t border-border">
+        <h3 class="text-sm font-semibold mb-3">Connect & Contact</h3>
+        <p class="text-xs opacity-80 leading-relaxed">
+          Feel free to reach out via GitHub or Email for academic discussions or project inquiries.
+        </p>
+      </div>
+    </section>
+  </main>
   <Footer />
 </Layout>
