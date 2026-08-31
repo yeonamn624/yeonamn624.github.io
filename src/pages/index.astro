@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
@@ -35,15 +34,21 @@ const homePath = getRelativeLocaleUrl(locale, "");
   >
     <section id="hero" class="border-border border-b pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Welcome to My Research Space
+        Welcome to My <span class="text-accent">Research Space</span>
       </h1>
 
-      <p class="mb-4">
-        I am an Electrical and Electronic Engineering undergraduate student deeply passionate about high-frequency communications and RF systems.
+      <p class="mb-4 text-base">
+        Welcome! I am an Electrical and Electronic Engineering undergraduate student deeply passionate about high-frequency communications and RF systems.
       </p>
 
-      <p class="font-semibold mt-4">Core Focus Areas:</p>
-      <ul class="list-disc list-inside my-2 space-y-1">
+      <p class="font-semibold mt-6 mb-2">Core Focus Areas:</p>
+      <div class="flex flex-wrap gap-2 my-3">
+        <span class="rounded border border-accent/30 bg-accent/10 px-3 py-1 text-sm font-medium text-accent">RF & Microwave Engineering</span>
+        <span class="rounded border border-accent/30 bg-accent/10 px-3 py-1 text-sm font-medium text-accent">Antenna Theory & Design</span>
+        <span class="rounded border border-accent/30 bg-accent/10 px-3 py-1 text-sm font-medium text-accent">Simulation & Measurement</span>
+      </div>
+
+      <ul class="list-disc list-inside my-4 space-y-1 text-sm opacity-90">
         <li><strong>RF & Microwave Engineering:</strong> High-frequency circuit analysis, impedance matching, and passive/active components.</li>
         <li><strong>Antenna Theory & Design:</strong> Radiating systems, wave propagation, and electromagnetic field theory.</li>
         <li><strong>Simulation & Measurement:</strong> Modeling high-frequency structures and analyzing signal characteristics.</li>
