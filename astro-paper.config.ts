@@ -3,7 +3,7 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://yeonamn624.github.io/",
-    title: "Jiwon | Research Note",
+    title: "Jiwon Park",
     description: "Personal research log and engineering portfolio.",
     author: "Jiwon",
     profile: "https://github.com/yeonamn624",
