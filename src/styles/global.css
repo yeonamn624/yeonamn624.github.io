@@ -9,15 +9,6 @@
   font-family: Arial, Helvetica, sans-serif !important;
 }
 
-:root {
-  --color-fill: 0 0% 100%;
-  --color-card: 0 0% 98%;
-  --color-card-muted: 330 60% 97%;
-  --color-accent: 325 75% 36%;
-  --color-text-base: 330 15% 10%;
-  --color-border: 325 30% 88%;
-}
-
 @layer base {
   * {
     @apply border-border outline-accent/75;
